@@ -1,17 +1,16 @@
+class Load {
+  loadEventListeners() {
+    document.addEventListener('DOMContentLoaded', loadData);
+    submit.addEventListener('click', addData);
+  }
+}
+
 const dateInput = document.querySelector("#date"),
       heightInput = document.querySelector("#height"),
       weightInput = document.querySelector("#weight"),
       submit = document.querySelector("#submit");
 
-function Load(){}
-
-const load = new Load();
-
-Load.prototype.loadEventListeners = function() {
-  document.addEventListener('DOMContentLoaded', loadData);
-  submit.addEventListener('click', addData);
-}
-
+const load = new Load;
 
 load.loadEventListeners();
 
