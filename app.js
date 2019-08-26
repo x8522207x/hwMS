@@ -45,13 +45,13 @@ function addData(e){
     data.date = document.querySelector("#date").value;
     data.height = document.querySelector("#height").value;
     data.weight = document.querySelector("#weight").value;
-    storeData(data);
+    storeData(data, loadData);
     
     e.preventDefault();
   }
 };
 
-function storeData(data) {
+function storeData(data, callback) {
   let dataList;
   if(localStorage.getItem('data') !== null) {
      dataList = JSON.parse(localStorage.getItem('data'));
@@ -70,7 +70,7 @@ function storeData(data) {
   while(tbody.firstChild) {
     tbody.firstChild.remove();
   }
-  loadData();
+  callback();
 }
 
 function loadData() {
@@ -119,7 +119,7 @@ function compareMS(weight, height, tbody) {
       let result;
       height[i] = height[i]/100 * height[i]/100;
       result = Number(weight[i]/height[i]).toFixed(1);
-      if(result < 16.5 || result >31.5){
+      if(result < 16.5 || result >31.5) {
         tbody.children[i].children[4].textContent = '免役';
       } else if((16.5 <= result && result < 17) || (31 < result && result<= 31.5)) {
         tbody.children[i].children[4].textContent = '替代役';

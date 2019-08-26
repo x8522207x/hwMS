@@ -44,13 +44,13 @@ function addData(e){
     data.date = document.querySelector("#date").value;
     data.height = document.querySelector("#height").value;
     data.weight = document.querySelector("#weight").value;
-    storeData(data);
+    storeData(data, loadData);
     
     e.preventDefault();
   }
 };
 
-function storeData(data) {
+function storeData(data, callback) {
   let dataList;
   if(localStorage.getItem('data') !== null) {
      dataList = JSON.parse(localStorage.getItem('data'));
@@ -69,7 +69,7 @@ function storeData(data) {
   while(tbody.firstChild) {
     tbody.firstChild.remove();
   }
-  loadData();
+  callback();
 }
 
 function loadData() {
