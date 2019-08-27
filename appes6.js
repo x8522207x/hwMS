@@ -32,9 +32,7 @@ function message(message, state) {
   div.textContent = message;
   div.className = state;
   document.querySelector('.container').insertBefore(div, document.querySelector('table'));
-  setTimeout(function(){
-    document.querySelector(`.${state}`).remove();
-  }, 3000);
+  setTimeout(() => document.querySelector(`.${state}`).remove(), 3000);
 }
 
 function addData(e){
@@ -114,10 +112,10 @@ function compareWeight(weight, tbody) {
 
 function compareMS(weight, height, tbody) {
   if(weight !== null) {
-    for(let i in weight){
+    weight.forEach((w, i) => {
       let result;
       height[i] = height[i]/100 * height[i]/100;
-      result = Number(weight[i]/height[i]).toFixed(1);
+      result = Number(w/height[i]).toFixed(1);
       if(result < 16.5 || result >31.5){
         tbody.children[i].children[4].textContent = '免役';
       } else if((16.5 <= result && result < 17) || (31 < result && result<= 31.5)) {
@@ -125,6 +123,6 @@ function compareMS(weight, height, tbody) {
       } else {
         tbody.children[i].children[4].textContent = '常備役';
       }
-    }
+    });
   }
 }
