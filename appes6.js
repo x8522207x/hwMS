@@ -5,10 +5,7 @@ class Load {
   }
 }
 
-const dateInput = document.querySelector("#date"),
-      heightInput = document.querySelector("#height"),
-      weightInput = document.querySelector("#weight"),
-      submit = document.querySelector("#submit");
+const [dateInput, heightInput, weightInput, submit] = [document.querySelector("#date"), document.querySelector("#height"), document.querySelector("#weight"), document.querySelector("#submit")];
 
 const load = new Load;
 
@@ -29,19 +26,19 @@ function valid(date, height, weight, e) {
 
 function message(message, state) {
   const div = document.createElement('div');
-  div.textContent = message;
-  div.className = state;
+  [div.textContent, div.className]= [message, state];
   document.querySelector('.container').insertBefore(div, document.querySelector('table'));
   setTimeout(() => document.querySelector(`.${state}`).remove(), 3000);
 }
 
 function addData(e){
   if(valid(dateInput.value, heightInput.value, weightInput.value, e)) {
-    let data = new Object();
+    let data = {
+      date: document.querySelector("#date").value,
+      height: document.querySelector("#height").value,
+      weight: document.querySelector("#weight").value
+    };
 
-    data.date = document.querySelector("#date").value;
-    data.height = document.querySelector("#height").value;
-    data.weight = document.querySelector("#weight").value;
     storeData(data, loadData);
     
     e.preventDefault();
@@ -116,7 +113,7 @@ function compareMS(weight, height, tbody) {
       let result;
       height[i] = height[i]/100 * height[i]/100;
       result = Number(w/height[i]).toFixed(1);
-      if(result < 16.5 || result >31.5){
+      if(result < 16.5 || result > 31.5){
         tbody.children[i].children[4].textContent = '免役';
       } else if((16.5 <= result && result < 17) || (31 < result && result<= 31.5)) {
         tbody.children[i].children[4].textContent = '替代役';

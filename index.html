@@ -10,27 +10,20 @@
 <body>
   <div class="container">
     <div id="input">
-      <form id="form">
-        <div class="form-row">
-          <div class="col-auto">
+      <div class="form-row">
+        <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+          <form id="form">
             <label class="sr-only" for="date">日期</label>
             <input type="Date" id="date">
-          </div>
-          <div class="col-auto">
             <label class="sr-only" for="height">身高(cm)</label>
             <input type="text" id="height">  
-          </div>
-          <div class="col-auto">
             <label class="sr-only" for="weight">體重(kg)</label>
             <input type="text" id="weight">
-          </div> 
-          <div class="col-auto">
             <button id="submit">送出</button>
-          </div>
-        </div>
-      </form>
+          </form>
+        </nav>
+      </div>
     </div>
-    
     <table id="table">
       <thead>
         <tr>
@@ -58,6 +51,10 @@
       left: 0;
       top: 80%;
       width: 100%;
+      background-image:linear-gradient(
+      to right bottom,
+      #e9e6e7,
+      #77777227);
     }
 
     th, td {
@@ -68,6 +65,18 @@
     #input {
       position: relative;
       top:0%;
+      background-image:linear-gradient(
+      to right bottom,
+      #d63083,
+      #cece4827);
+    }
+
+    #submit {
+      background-image: linear-gradient(
+        to top,
+        rgb(148, 197, 56),
+        rgb(118, 165, 235)
+      );
     }
 
     .success, .error {
@@ -82,6 +91,23 @@
       background: red;
     }
 
+    label {
+      width: 70px;
+      margin: 0px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url(../img/soldier.jpg), url(../img/soldier2.jpg), url(../img/weight.jpg), url(../img/weight2.jpg);
+      background-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%;
+      background-position: left top, right top, left bottom, right bottom ;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    }
   </style>
 </body>
 </html>
