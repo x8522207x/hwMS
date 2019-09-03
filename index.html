@@ -11,12 +11,23 @@
   <div class="container">
     <div id="input">
       <form id="form">
-        <h6>
-          日期<input type="Date" id="date">
-          身高(cm)<input type="text" id="height">  
-          體重(kg)<input type="text" id="weight">
-          <button id="submit">送出</button>
-        </h6>
+        <div class="form-row">
+          <div class="col-auto">
+            <label class="sr-only" for="date">日期</label>
+            <input type="Date" id="date">
+          </div>
+          <div class="col-auto">
+            <label class="sr-only" for="height">身高(cm)</label>
+            <input type="text" id="height">  
+          </div>
+          <div class="col-auto">
+            <label class="sr-only" for="weight">體重(kg)</label>
+            <input type="text" id="weight">
+          </div> 
+          <div class="col-auto">
+            <button id="submit">送出</button>
+          </div>
+        </div>
       </form>
     </div>
     
