@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="firstModule">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    integrity="sha256-ECB9bbROLGm8wOoEbHcHRxlHgzGqYpDtNTgDTyDz0wg=" crossorigin="anonymous" />
+  <script src="angular.min.js"></script>
+  <script src="ng_app.js"></script>
+  <title>每日體重</title>
+</head>
+
+<body>
+  <div class="container" ng-controller="FirstController" ng-init="loadData()">
+    <div id="input">
+      <div class="form-row">
+        <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+          <form id="form">
+            日期
+            <input type="Date" ng-model='date'>
+            身高
+            <input type="text" ng-model='height'>
+            體重
+            <input type="text" ng-model='weight'>
+            <button id="submit" ng-click="addData()">送出</button>
+          </form>
+        </nav>
+      </div>
+    </div>
+    <table id="table">
+      <thead>
+        <tr>
+          <td>日期</td>
+          <td>身高(cm)</td>
+          <td>體重(kg)</td>
+          <td>與前一天相比</td>
+          <td>兵役體位</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="name in names track by $index">
+          <td ng-bind="name.date | date:'yyyy-MM-dd'">{{name.date}}</td>
+          <td>{{name.height}}</td>
+          <td>{{name.weight}}</td>
+          <td style="background:{{name.style}};">{{name.diff}}</td>
+          <td>{{name.mili}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <style>
+    .container {
+      position: relative;
+    }
+
+    #table {
+      border-collapse: collapse;
+      border: 1px solid black;
+      position: relative;
+      left: 0;
+      top: 80%;
+      width: 100%;
+      background-image: linear-gradient(to right bottom,
+          #e9e6e7,
+          #77777227);
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    #input {
+      position: relative;
+      top: 0%;
+      background-image: linear-gradient(to right bottom,
+          #d63083,
+          #cece4827);
+    }
+
+    #submit {
+      background-image: linear-gradient(to top,
+          rgb(148, 197, 56),
+          rgb(118, 165, 235));
+    }
+
+    .success,
+    .error {
+      text-align: center;
+    }
+
+    .success {
+      background: yellow;
+    }
+
+    .error {
+      background: red;
+    }
+
+    label {
+      width: 70px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      color: #8a54f0;
+    }
+
+    body {
+      background-image: url(img/soldier.jpg), url(img/soldier2.jpg), url(img/weight.jpg), url(img/weight2.jpg);
+      background-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%;
+      background-position: left top, right top, left bottom, right bottom;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    }
+  </style>
+</body>
+
+</html>
