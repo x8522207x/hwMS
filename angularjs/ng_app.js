@@ -7,7 +7,7 @@
           date: $filter('date')($scope.date, 'yyyy-MM-dd'),
           height: $scope.height,
           weight: $scope.weight,
-          diff: null,
+          diff: null, 
           style: "",
           mili: ""
         };
