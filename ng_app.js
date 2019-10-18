@@ -1,16 +1,16 @@
 (() => {
-  angular.module('firstModule', []).controller('FirstController', ['$scope', ($scope) => {
+  angular.module('firstModule', []).controller('FirstController', ['$scope', '$filter', 'validFilter', ($scope, $filter, validFilter) => {
     $scope.addData = () => {
-      if (valid($scope.date, $scope.height, $scope.weight)) {
+      if (validFilter($scope.date, $scope.height, $scope.weight)) {
+
         let data = {
-          date: $scope.date,
+          date: $filter('date')($scope.date, 'yyyy-MM-dd'),
           height: $scope.height,
           weight: $scope.weight,
-          diff: null,
+          diff: null, 
           style: "",
           mili: ""
         };
-
         $scope.storeData(data, $scope.loadData);
       }
     };
@@ -58,18 +58,21 @@
         })
       }
     }
-  }]);
+  }])
+    .filter('valid', valid);
 })();
 
-function valid(date, height, weight, e) {
-  if (date === "" || height === "" || weight === "") {
-    const table = document.querySelector('table');
-    message(`有資料沒輸入`, 'error');
-    return false;
-  } else {
-    message(`成功輸入資料`, 'success');
-    return true;
-  }
+function valid() {
+  return (date, height, weight) => {
+    if (date === undefined || date === null || height === undefined || weight === undefined) {
+      const table = document.querySelector('table');
+      message(`有資料沒輸入`, 'error');
+      return false;
+    } else {
+      message(`成功輸入資料`, 'success');
+      return true;
+    }
+  };
 }
 
 function message(message, state) {

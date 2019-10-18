@@ -21,9 +21,9 @@
             日期
             <input type="Date" ng-model='date'>
             身高
-            <input type="text" ng-model='height'>
+            <input type="number" ng-model='height'>
             體重
-            <input type="text" ng-model='weight'>
+            <input type="number" ng-model='weight'>
             <button id="submit" ng-click="addData()">送出</button>
           </form>
         </nav>
@@ -39,9 +39,9 @@
           <td>兵役體位</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody> 
         <tr ng-repeat="name in names track by $index">
-          <td ng-bind="name.date | date:'yyyy-MM-dd'">{{name.date}}</td>
+          <td ng-bind="name.date">{{name.date}}</td>
           <td>{{name.height}}</td>
           <td>{{name.weight}}</td>
           <td style="background:{{name.style}};">{{name.diff}}</td>
